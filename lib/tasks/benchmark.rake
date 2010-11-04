@@ -7,7 +7,7 @@ namespace :bench do
         
         # Use the seed data to seed the searches. We want some randomness to distribute the data
         File.open(RAILS_ROOT + "/data/down_and_out_in_the_magic_kingdom.txt").each_line do |line| 
-            line.strip.split(/\s+/).each {|word| wordSet << word}
+            line.strip.split(/\s+/).each {|word| wordSet << word.gsub(/\W/, '')}
         end
         
         words = wordSet.to_a
@@ -22,15 +22,20 @@ namespace :bench do
         matches_found = 0
         while(runs < max)
             # Randomly pick a word that we found in the text
-            word = words[(words.size * rand).to_i]
-            search = User.search word
+            begin 
+                word = words[(words.size * rand).to_i]
+                search = User.search do 
+                    keywords(word)
+                end
             
-            # Do something with the result so a load is forced
-            matches_found += search.length
-            runs += 1
-            if(runs % frequency == 0) 
-                puts ('Run: ' + runs.to_s + ' Time: ' + (Time.now - sectionTime).to_s + ' seconds')
-                sectionTime = Time.now
+                # Do something with the result so a load is forced
+                matches_found += search.results.length
+                runs += 1
+                if(runs % frequency == 0) 
+                    puts ('Run: ' + runs.to_s + ' Time: ' + (Time.now - sectionTime).to_s + ' seconds')
+                    sectionTime = Time.now
+                end
+            rescue 
             end
         end
         endTime = Time.now
