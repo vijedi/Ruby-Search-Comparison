@@ -5,10 +5,8 @@ gem 'rails', '3.0.1'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'pg', :require => 'pg'
-gem 'chronic', :require => 'chronic'
-
+gem 'thinking-sphinx', '2.0.0.rc1', :require => 'thinking_sphinx'
 
 # Use unicorn as the web server
 # gem 'unicorn'

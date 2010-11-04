@@ -13,10 +13,12 @@ class CreateBasicModel < ActiveRecord::Migration
         
         file = File.open("data/down_and_out_in_the_magic_kingdom.txt")
         
-        while(text = file.read(2048)) do 
-            User.create(:first_name => names[(names.length * rand).to_i], 
-                    :last_name => names[(names.length * rand).to_i],
-                    :data => text)
+        (1..10).each do 
+            while(text = file.read(512)) do 
+                User.create(:first_name => names[(names.length * rand).to_i], 
+                        :last_name => names[(names.length * rand).to_i],
+                        :data => text)
+            end
         end
     end
 
