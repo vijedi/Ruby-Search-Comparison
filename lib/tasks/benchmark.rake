@@ -38,6 +38,6 @@ namespace :bench do
         totalTime = (endTime - time)
         
         puts ('Completed ' + max.to_s + ' runs')
-        puts ('Total time ' + totalTime.to_s + ' seconds. Found ' + matches_found + ' records')
+        puts ('Total time ' + totalTime.to_s + ' seconds. Found ' + matches_found.to_s + ' records')
     end
 end
