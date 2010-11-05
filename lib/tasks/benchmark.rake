@@ -14,7 +14,7 @@ namespace :bench do
         
         runs = 0
         max = 50000
-        frequency = 1000
+        frequency = 5000
         
         time = Time.now
         sectionTime = Time.now
