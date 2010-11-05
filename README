@@ -28,3 +28,14 @@ To run this benchmark for one of the search backends do:
 - rake thinking_sphinx:index
 - rake thinking_sphinx:start
 - rake bench:run
+
+== For Sunspot
+
+- git checkout origin sunspot
+- bundle install
+- update the database settings
+- rake db:create db:migrate 
+- edit config/sphinx.yml (if running the search on a different box)
+- rake thinking_sphinx:index
+- rake thinking_sphinx:start
+- rake bench:run
